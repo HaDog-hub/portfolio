@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   featuredProject,
   projectDetails,
@@ -25,15 +26,23 @@ function Nav() {
   );
 }
 
-function ImageFrame({ image, compact = false }) {
+function ImageFrame({ image, compact = false, onOpen }) {
   return (
     <figure className={compact ? "image-frame compact" : "image-frame"}>
-      <div className="window-bar" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
-      <img src={image.src} alt={image.title} loading="lazy" />
+      <button
+        className="image-trigger"
+        type="button"
+        onClick={() => onOpen(image)}
+        aria-label={`查看大圖：${image.title}`}
+      >
+        <div className="window-bar" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <img src={image.src} alt={image.title} loading="lazy" />
+        <span className="image-overlay">點擊查看大圖</span>
+      </button>
       {image.caption ? (
         <figcaption>
           <strong>{image.title}</strong>
@@ -41,6 +50,43 @@ function ImageFrame({ image, compact = false }) {
         </figcaption>
       ) : null}
     </figure>
+  );
+}
+
+function ImageLightbox({ image, onClose }) {
+  useEffect(() => {
+    if (!image) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.classList.add("is-lightbox-open");
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("is-lightbox-open");
+    };
+  }, [image, onClose]);
+
+  if (!image) return null;
+
+  return (
+    <div className="lightbox" role="dialog" aria-modal="true" aria-label={image.title}>
+      <button className="lightbox-backdrop" type="button" onClick={onClose} aria-label="關閉大圖" />
+      <div className="lightbox-panel">
+        <div className="lightbox-header">
+          <strong>{image.title}</strong>
+          <button type="button" onClick={onClose}>
+            關閉
+          </button>
+        </div>
+        <img src={image.src} alt={image.title} />
+      </div>
+    </div>
   );
 }
 
@@ -78,7 +124,7 @@ function SystemPreview({ compact = false }) {
   );
 }
 
-function FeaturedCard() {
+function FeaturedCard({ onOpenImage }) {
   return (
     <article className="featured-card">
       <div className="featured-copy">
@@ -104,12 +150,15 @@ function FeaturedCard() {
           </a>
         </div>
       </div>
-      <ImageFrame image={{ src: featuredProject.cover, title: "首頁甘特圖" }} />
+      <ImageFrame
+        image={{ src: featuredProject.cover, title: "首頁甘特圖" }}
+        onOpen={onOpenImage}
+      />
     </article>
   );
 }
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, onOpenImage }) {
   return (
     <article className="project-card">
       <div className="card-meta">
@@ -119,7 +168,11 @@ function ProjectCard({ project, index }) {
       <h3>{project.title}</h3>
       <p>{project.summary}</p>
       <div className="mini-preview">
-        <ImageFrame image={{ src: project.cover, title: project.title }} compact />
+        <ImageFrame
+          image={{ src: project.cover, title: project.title }}
+          compact
+          onOpen={onOpenImage}
+        />
       </div>
       <div className="tag-row">
         {project.tags.map((tag) => (
@@ -143,21 +196,26 @@ function ProjectCard({ project, index }) {
   );
 }
 
-function Projects() {
+function Projects({ onOpenImage }) {
   return (
     <section id="projects" className="section">
       <p className="eyebrow">Selected Work</p>
-      <FeaturedCard />
+      <FeaturedCard onOpenImage={onOpenImage} />
       <div className="project-grid">
         {secondaryProjects.map((project, index) => (
-          <ProjectCard project={project} index={index} key={project.title} />
+          <ProjectCard
+            project={project}
+            index={index}
+            key={project.title}
+            onOpenImage={onOpenImage}
+          />
         ))}
       </div>
     </section>
   );
 }
 
-function CaseStudy() {
+function CaseStudy({ onOpenImage }) {
   return (
     <section id="case-study" className="section case-section">
       <div className="detail-stack">
@@ -185,6 +243,7 @@ function CaseStudy() {
                   image={image}
                   key={image.title}
                   compact={!image.featured}
+                  onOpen={onOpenImage}
                 />
               ))}
             </div>
@@ -236,6 +295,8 @@ function Contact() {
 }
 
 export default function App() {
+  const [activeImage, setActiveImage] = useState(null);
+
   return (
     <div id="top" className="app">
       <Nav />
@@ -255,7 +316,7 @@ export default function App() {
               </span>
             </p>
             <div className="hero-tags" aria-label="核心技術">
-              {["React", "Spring Boot", "FastAPI", "RAG", "PPO", "Simulated Annealing"].map(
+              {["React", "Spring Boot", "FastAPI", "RAG", "PPO"].map(
                 (tag) => (
                   <Badge key={tag}>{tag}</Badge>
                 ),
@@ -271,11 +332,12 @@ export default function App() {
             </div>
           </div>
         </section>
-        <Projects />
-        <CaseStudy />
+        <Projects onOpenImage={setActiveImage} />
+        <CaseStudy onOpenImage={setActiveImage} />
         <Skills />
         <Contact />
       </main>
+      <ImageLightbox image={activeImage} onClose={() => setActiveImage(null)} />
     </div>
   );
 }

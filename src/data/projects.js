@@ -173,9 +173,5 @@ export const skillGroups = [
   {
     title: "AI Engineering",
     items: ["RAG", "Embeddings", "Hybrid Retrieval", "LLM Streaming"],
-  },
-  {
-    title: "Algorithms",
-    items: ["Simulated Annealing", "PPO", "Reward Design", "Experiment Logs"],
-  },
+  }
 ];
