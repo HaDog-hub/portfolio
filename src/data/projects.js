@@ -1,4 +1,15 @@
-const image = (path) => new URL(path, import.meta.url).href;
+import hollowKnightTrainingCurve from "../assets/screenshots/hollow-knight/training_curve.png";
+import ragChatPage from "../assets/screenshots/rag/chat-page.png";
+import ragSearchPage from "../assets/screenshots/rag/search-page.png";
+import ragUpdatePage from "../assets/screenshots/rag/update-page.png";
+import surgeryORManagement from "../assets/screenshots/surgery/OR-management.png";
+import surgeryAccountManagement from "../assets/screenshots/surgery/account-management.png";
+import surgeryAfterAlgorithm from "../assets/screenshots/surgery/after-algorithm.png";
+import surgeryBeforeAlgorithm from "../assets/screenshots/surgery/before-algorithm.png";
+import surgeryDepartmentManagement from "../assets/screenshots/surgery/department-management.png";
+import surgeryHomePage from "../assets/screenshots/surgery/home-page.png";
+import surgeryManagementAfterAlgorithm from "../assets/screenshots/surgery/surgery-management-after-algorithm.png";
+import surgeryManagementBeforeAlgorithm from "../assets/screenshots/surgery/surgery-management-before-algorithm.png";
 
 export const featuredProject = {
   eyebrow: "Featured Case Study",
@@ -9,7 +20,7 @@ export const featuredProject = {
     "以醫院手術室排程為情境，將資料管理、手動調整與自動最佳化流程整合在同一個操作介面中。",
   tags: ["React", "Vite", "Spring Boot", "MySQL", "SA + SGDR"],
   points: ["拖曳式甘特圖排程", "演算法前後對比", "角色權限與管理介面"],
-  cover: image("../assets/screenshots/surgery/home-page.png"),
+  cover: surgeryHomePage,
   links: {
     github: "https://github.com/1535414904/Surgery-Scheduling-System",
   },
@@ -22,7 +33,7 @@ export const secondaryProjects = [
       "多用戶文件問答系統，支援 PDF / DOCX 上傳、混合檢索與串流回答。",
     tags: ["React", "FastAPI", "RAG", "ChromaDB", "OpenAI"],
     metric: "Hybrid Search",
-    cover: image("../assets/screenshots/rag/chat-page.png"),
+    cover: ragChatPage,
     links: {
       github: "https://github.com/HaDog-hub/RAG_Knowledge_BASE",
       demo: "https://ragknowledgebase-production.up.railway.app",
@@ -34,7 +45,7 @@ export const secondaryProjects = [
       "以 PPO 訓練純視覺 Boss 戰 Agent，透過 C# Mod 與 Python RL 環境串接。",
     tags: ["PPO", "PyTorch", "Gymnasium", "C# Mod", "TCP"],
     metric: "1.47M steps",
-    cover: image("../assets/screenshots/hollow-knight/training_curve.png"),
+    cover: hollowKnightTrainingCurve,
     links: {
       github: "https://github.com/HaDog-hub/PPO-HollowKnight",
     },
@@ -52,43 +63,43 @@ export const projectDetails = [
       {
         title: "首頁甘特圖",
         caption: "以甘特圖呈現手術房排程狀態，讓使用者能快速掌握當日安排。",
-        src: image("../assets/screenshots/surgery/home-page.png"),
+        src: surgeryHomePage,
         featured: true,
       },
       {
         title: "排程前甘特圖",
         caption: "演算法執行前的排程狀態，用於對比最佳化前後差異。",
-        src: image("../assets/screenshots/surgery/before-algorithm.png"),
+        src: surgeryBeforeAlgorithm,
       },
       {
         title: "排程後甘特圖",
         caption: "演算法執行後重新分配結果，凸顯自動排程流程。",
-        src: image("../assets/screenshots/surgery/after-algorithm.png"),
+        src: surgeryAfterAlgorithm,
       },
       {
         title: "排程管理 - 執行前",
         caption: "排程管理頁面的演算法執行前狀態。",
-        src: image("../assets/screenshots/surgery/surgery-management-before-algorithm.png"),
+        src: surgeryManagementBeforeAlgorithm,
       },
       {
         title: "排程管理 - 執行後",
         caption: "排程管理頁面的演算法執行後狀態。",
-        src: image("../assets/screenshots/surgery/surgery-management-after-algorithm.png"),
+        src: surgeryManagementAfterAlgorithm,
       },
       {
         title: "帳號管理",
         caption: "系統管理員可管理使用者帳號與角色權限。",
-        src: image("../assets/screenshots/surgery/account-management.png"),
+        src: surgeryAccountManagement,
       },
       {
         title: "科別管理",
         caption: "維護醫院科別資料，支援排程資料的基礎管理。",
-        src: image("../assets/screenshots/surgery/department-management.png"),
+        src: surgeryDepartmentManagement,
       },
       {
         title: "手術房管理",
         caption: "管理手術房與相關設定，對應排程資源配置。",
-        src: image("../assets/screenshots/surgery/OR-management.png"),
+        src: surgeryORManagement,
       },
     ],
   },
@@ -102,18 +113,18 @@ export const projectDetails = [
       {
         title: "聊天室主頁面",
         caption: "有實際聊天內容的問答畫面，呈現知識庫回答體驗。",
-        src: image("../assets/screenshots/rag/chat-page.png"),
+        src: ragChatPage,
         featured: true,
       },
       {
         title: "上傳資料功能",
         caption: "使用者可上傳文件，建立可查詢的個人知識庫。",
-        src: image("../assets/screenshots/rag/update-page.png"),
+        src: ragUpdatePage,
       },
       {
         title: "搜尋功能",
         caption: "提供搜尋入口，展示系統的 retrieval 與文件查找能力。",
-        src: image("../assets/screenshots/rag/search-page.png"),
+        src: ragSearchPage,
       },
     ],
   },
@@ -127,7 +138,7 @@ export const projectDetails = [
       {
         title: "訓練曲線圖",
         caption: "追蹤訓練過程與 reward / damage 表現，用於說明模型學習進展。",
-        src: image("../assets/screenshots/hollow-knight/training_curve.png"),
+        src: hollowKnightTrainingCurve,
         featured: true,
       },
     ],

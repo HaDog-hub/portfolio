@@ -61,7 +61,6 @@ a {
 .nav-links,
 .hero-actions,
 .card-actions,
-.text-links,
 .tag-row {
   display: flex;
   align-items: center;
@@ -92,8 +91,7 @@ a {
   font-size: 0.92rem;
 }
 
-.nav-links a:hover,
-.text-links a:hover {
+.nav-links a:hover {
   color: var(--accent);
 }
 
@@ -253,6 +251,7 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
   gap: 32px;
+  align-items: center;
   overflow: hidden;
   padding: 32px;
 }
@@ -261,6 +260,12 @@ main {
 .project-card h3,
 .skill-card h3 {
   margin: 0;
+}
+
+.featured-copy {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
 }
 
 .featured-copy h2 {
@@ -333,12 +338,36 @@ main {
   background: #101419;
 }
 
+.featured-card > .image-frame {
+  align-self: center;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+.featured-card > .image-frame .window-bar,
+.project-card .image-frame .window-bar {
+  position: absolute;
+  inset: 0 0 auto;
+}
+
+.featured-card > .image-frame,
+.project-card .image-frame {
+  position: relative;
+}
+
 .image-frame img {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: top center;
+}
+
+.featured-card > .image-frame img,
+.project-card .image-frame img {
+  height: 100%;
+  padding-top: 34px;
+  aspect-ratio: auto;
 }
 
 .image-frame figcaption {
@@ -486,6 +515,9 @@ main {
 }
 
 .project-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
   padding: 24px;
 }
 
@@ -499,6 +531,7 @@ main {
 
 .card-meta strong {
   color: var(--accent-2);
+  text-align: right;
 }
 
 .project-card h3,
@@ -546,12 +579,19 @@ main {
   display: none;
 }
 
-.text-links {
-  gap: 16px;
-  margin-top: 20px;
-  color: var(--accent);
-  font-weight: 700;
-  font-size: 0.92rem;
+.project-card .tag-row {
+  margin-top: auto;
+}
+
+.project-card .card-actions,
+.featured-card .card-actions {
+  align-items: stretch;
+  gap: 10px;
+}
+
+.project-card .button,
+.featured-card .button {
+  flex: 1 1 0;
 }
 
 .case-grid,

@@ -108,7 +108,10 @@ function FeaturedCard() {
   return (
     <article className="featured-card">
       <div className="featured-copy">
-        <p className="eyebrow">{featuredProject.eyebrow}</p>
+        <div className="card-meta">
+          <span>01</span>
+          <strong>{featuredProject.eyebrow}</strong>
+        </div>
         <h2>{featuredProject.title}</h2>
         <p className="lead">{featuredProject.summary}</p>
         <p className="muted">{featuredProject.description}</p>
@@ -153,9 +156,15 @@ function ProjectCard({ project, index }) {
           <Badge key={tag}>{tag}</Badge>
         ))}
       </div>
-      <div className="text-links">
-        <a href={project.links.github}>GitHub</a>
-        {project.links.demo ? <a href={project.links.demo}>Live Demo</a> : null}
+      <div className="card-actions">
+        <a className="button primary" href={project.links.github}>
+          GitHub Repo
+        </a>
+        {project.links.demo ? (
+          <a className="button ghost" href={project.links.demo}>
+            Live Demo
+          </a>
+        ) : null}
       </div>
     </article>
   );
