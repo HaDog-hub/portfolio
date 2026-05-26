@@ -32,11 +32,9 @@ export const secondaryProjects = [
     summary:
       "多用戶文件問答系統，支援 PDF / DOCX 上傳、混合檢索與串流回答。",
     tags: ["React", "FastAPI", "RAG", "ChromaDB", "OpenAI"],
-    metric: "Hybrid Search",
     cover: ragChatPage,
     links: {
       github: "https://github.com/HaDog-hub/RAG_Knowledge_BASE",
-      demo: "https://ragknowledgebase-production.up.railway.app",
     },
   },
   {
@@ -44,7 +42,6 @@ export const secondaryProjects = [
     summary:
       "以 PPO 訓練純視覺 Boss 戰 Agent，透過 C# Mod 與 Python RL 環境串接。",
     tags: ["PPO", "PyTorch", "Gymnasium", "C# Mod", "TCP"],
-    metric: "1.47M steps",
     cover: hollowKnightTrainingCurve,
     links: {
       github: "https://github.com/HaDog-hub/PPO-HollowKnight",

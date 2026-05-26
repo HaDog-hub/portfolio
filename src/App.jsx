@@ -108,10 +108,6 @@ function FeaturedCard() {
   return (
     <article className="featured-card">
       <div className="featured-copy">
-        <div className="card-meta">
-          <span>01</span>
-          <strong>{featuredProject.eyebrow}</strong>
-        </div>
         <h2>{featuredProject.title}</h2>
         <p className="lead">{featuredProject.summary}</p>
         <p className="muted">{featuredProject.description}</p>
@@ -144,7 +140,7 @@ function ProjectCard({ project, index }) {
     <article className="project-card">
       <div className="card-meta">
         <span>0{index + 2}</span>
-        <strong>{project.metric}</strong>
+        {project.metric ? <strong>{project.metric}</strong> : null}
       </div>
       <h3>{project.title}</h3>
       <p>{project.summary}</p>
@@ -173,10 +169,7 @@ function ProjectCard({ project, index }) {
 function Projects() {
   return (
     <section id="projects" className="section">
-      <div className="section-heading">
-        <p className="eyebrow">Selected Work</p>
-        <h2>以一個完整系統作為主體，兩個 AI 專案補足技術深度。</h2>
-      </div>
+      <p className="eyebrow">Selected Work</p>
       <FeaturedCard />
       <div className="project-grid">
         {secondaryProjects.map((project, index) => (

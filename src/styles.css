@@ -135,7 +135,7 @@ main {
 .eyebrow {
   margin: 0 0 14px;
   color: var(--accent);
-  font-size: 0.78rem;
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -249,7 +249,7 @@ main {
 
 .featured-card {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  grid-template-columns: minmax(460px, 1fr) minmax(360px, 0.95fr);
   gap: 32px;
   align-items: center;
   overflow: hidden;
@@ -269,7 +269,8 @@ main {
 }
 
 .featured-copy h2 {
-  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-size: clamp(1.7rem, 2.35vw, 2.35rem);
+  white-space: nowrap;
 }
 
 .lead {
@@ -524,6 +525,7 @@ main {
 .card-meta {
   display: flex;
   justify-content: space-between;
+  min-height: 1em;
   margin-bottom: 24px;
   color: var(--subtle);
   font-size: 0.82rem;
@@ -694,6 +696,10 @@ main {
 
   .hero {
     min-height: auto;
+  }
+
+  .featured-copy h2 {
+    white-space: normal;
   }
 
   .project-grid,
