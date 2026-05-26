@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   featuredProject,
   projectDetails,
@@ -9,15 +9,69 @@ function Badge({ children }) {
   return <span className="badge">{children}</span>;
 }
 
-function Nav() {
+function Nav({ isWorkHighlighted }) {
+  const dropdownRef = useRef(null);
+  const [isWorkMenuOpen, setIsWorkMenuOpen] = useState(false);
+  const workLinks = [
+    ["#projects", "作品總覽"],
+    ["#surgery", "手術排程系統"],
+    ["#rag", "RAG 知識庫問答"],
+    ["#hollow-knight", "Hollow Knight AI"],
+  ];
+
+  useEffect(() => {
+    const closeMenu = (event) => {
+      if (event.key === "Escape") {
+        setIsWorkMenuOpen(false);
+      }
+
+      if (
+        event.type === "pointerdown" &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsWorkMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", closeMenu);
+    document.addEventListener("pointerdown", closeMenu);
+
+    return () => {
+      document.removeEventListener("keydown", closeMenu);
+      document.removeEventListener("pointerdown", closeMenu);
+    };
+  }, []);
+
   return (
-    <header className="site-header">
+    <header className={isWorkHighlighted ? "site-header is-work-highlighted" : "site-header"}>
       <a className="brand" href="#top" aria-label="回到首頁">
         <span className="brand-mark">HaDog</span>
         <span>Portfolio</span>
       </a>
       <nav className="nav-links" aria-label="主要導覽">
-        <a href="#projects">作品</a>
+        <div
+          className={isWorkMenuOpen ? "nav-dropdown is-open" : "nav-dropdown"}
+          ref={dropdownRef}
+        >
+          <button
+            className="nav-dropdown-trigger"
+            type="button"
+            aria-expanded={isWorkMenuOpen}
+            aria-haspopup="true"
+            onClick={() => setIsWorkMenuOpen((isOpen) => !isOpen)}
+          >
+            作品
+            <span aria-hidden="true">⌄</span>
+          </button>
+          <div className="nav-dropdown-menu">
+            {workLinks.map(([href, label]) => (
+              <a href={href} key={href} onClick={() => setIsWorkMenuOpen(false)}>
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
         <a href="#contact">聯絡我</a>
       </nav>
     </header>
@@ -307,31 +361,31 @@ function Contact() {
 
 export default function App() {
   const [activeImage, setActiveImage] = useState(null);
-  const [showWorkReturn, setShowWorkReturn] = useState(false);
+  const [highlightWorkNav, setHighlightWorkNav] = useState(false);
 
   useEffect(() => {
-    const updateWorkReturn = () => {
+    const updateWorkNav = () => {
       const projectsSection = document.getElementById("projects");
 
       if (!projectsSection) return;
 
       const sectionBottom = projectsSection.getBoundingClientRect().bottom;
-      setShowWorkReturn(sectionBottom <= 88);
+      setHighlightWorkNav(sectionBottom <= 88);
     };
 
-    updateWorkReturn();
-    window.addEventListener("scroll", updateWorkReturn, { passive: true });
-    window.addEventListener("resize", updateWorkReturn);
+    updateWorkNav();
+    window.addEventListener("scroll", updateWorkNav, { passive: true });
+    window.addEventListener("resize", updateWorkNav);
 
     return () => {
-      window.removeEventListener("scroll", updateWorkReturn);
-      window.removeEventListener("resize", updateWorkReturn);
+      window.removeEventListener("scroll", updateWorkNav);
+      window.removeEventListener("resize", updateWorkNav);
     };
   }, []);
 
   return (
     <div id="top" className="app">
-      <Nav />
+      <Nav isWorkHighlighted={highlightWorkNav} />
       <main>
         <section className="hero">
           <div className="hero-copy">
@@ -368,13 +422,6 @@ export default function App() {
         <CaseStudy onOpenImage={setActiveImage} />
         <Contact />
       </main>
-      <a
-        className={showWorkReturn ? "work-return is-visible" : "work-return"}
-        href="#projects"
-        aria-label="回到 Selected Work"
-      >
-        <span>回到作品</span>
-      </a>
       <ImageLightbox image={activeImage} onClose={() => setActiveImage(null)} />
     </div>
   );
