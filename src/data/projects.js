@@ -165,7 +165,7 @@ export const projectDetails = [
   },
   {
     id: "rag",
-    eyebrow: "RAG Knowledge BASE",
+    eyebrow: "RAG Knowledge Base",
     title: "RAG 知識庫問答系統",
     description:
       "展示文件上傳、知識庫檢索與聊天回答流程，重點放在 RAG 應用的完整互動。",
