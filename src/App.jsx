@@ -25,32 +25,6 @@ function Nav() {
   );
 }
 
-function HeroPanel() {
-  const rows = [
-    ["Focus", "AI Apps / Full-stack Systems"],
-    ["Main Case", "Surgery Scheduling"],
-    ["Stack", "React / FastAPI / Spring Boot"],
-    ["Mode", "Static GitHub Pages"],
-  ];
-
-  return (
-    <aside className="hero-panel" aria-label="能力摘要">
-      <div className="panel-top">
-        <span className="status-dot" />
-        <span>Profile Snapshot</span>
-      </div>
-      <div className="panel-grid">
-        {rows.map(([label, value]) => (
-          <div className="panel-row" key={label}>
-            <span>{label}</span>
-            <strong>{value}</strong>
-          </div>
-        ))}
-      </div>
-    </aside>
-  );
-}
-
 function ImageFrame({ image, compact = false }) {
   return (
     <figure className={compact ? "image-frame compact" : "image-frame"}>
@@ -268,11 +242,25 @@ export default function App() {
       <main>
         <section className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">AI Application / Full-stack Systems</p>
-            <h1>把演算法、RAG 與強化學習做成可操作的工程系統。</h1>
+            <p className="hero-name">HaDog</p>
+            <p className="hero-role">AI Application / Full-stack Systems / Optimization</p>
+            <h1>
+              把演算法、RAG 與強化學習
+              <span>做成可操作的工程系統。</span>
+            </h1>
             <p>
-              求職導向作品集，主打智能手術排程系統，並展示 RAG 知識庫與遊戲強化學習專案。
+              我專注於將 AI、排程最佳化與資料密集型介面整合成可使用的系統。
+              <span>
+                具備 React 前端、FastAPI / Spring Boot 後端與演算法實作經驗。
+              </span>
             </p>
+            <div className="hero-tags" aria-label="核心技術">
+              {["React", "Spring Boot", "FastAPI", "RAG", "PPO", "Simulated Annealing"].map(
+                (tag) => (
+                  <Badge key={tag}>{tag}</Badge>
+                ),
+              )}
+            </div>
             <div className="hero-actions">
               <a className="button primary" href="#projects">
                 查看作品
@@ -282,7 +270,6 @@ export default function App() {
               </a>
             </div>
           </div>
-          <HeroPanel />
         </section>
         <Projects />
         <CaseStudy />

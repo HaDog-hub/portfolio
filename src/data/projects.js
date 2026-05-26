@@ -146,7 +146,7 @@ export const projectDetails = [
   },
   {
     id: "hollow-knight",
-    eyebrow: "HollowKnight AI",
+    eyebrow: "PPO Hollow Knight",
     title: "Hollow Knight AI",
     description:
       "用訓練曲線呈現 PPO Agent 的學習過程，補足強化學習專案的成果證據。",
