@@ -28,6 +28,7 @@ export const featuredProject = {
 
 export const secondaryProjects = [
   {
+    id: "rag",
     title: "RAG 知識庫問答系統",
     summary:
       "多用戶文件問答系統，支援 PDF / DOCX 上傳、混合檢索與串流回答。",
@@ -38,6 +39,7 @@ export const secondaryProjects = [
     },
   },
   {
+    id: "hollow-knight",
     title: "Hollow Knight AI",
     summary:
       "以 PPO 訓練純視覺 Boss 戰 Agent，透過 C# Mod 與 Python RL 環境串接。",
@@ -52,10 +54,27 @@ export const secondaryProjects = [
 export const projectDetails = [
   {
     id: "surgery",
-    eyebrow: "Primary Case Study",
+    eyebrow: "Surgery Scheduling System",
     title: "智能手術排程決策支援系統",
     description:
       "主打完整系統能力：從手術資料管理、權限角色，到拖曳式甘特圖與排程演算法整合。",
+    highlights: [
+      {
+        title: "演算法整合",
+        description:
+          "將 SA + SGDR 排程結果接回後端流程，輸出可被前端檢視與操作的排程資料。",
+      },
+      {
+        title: "視覺化排程",
+        description:
+          "用甘特圖呈現手術房、時間與手術項目，讓使用者能比較排程前後差異。",
+      },
+      {
+        title: "實務管理流程",
+        description:
+          "保留帳號、科別、手術房與手術資料管理，讓系統不只是演算法 demo。",
+      },
+    ],
     images: [
       {
         title: "首頁甘特圖",
@@ -64,23 +83,23 @@ export const projectDetails = [
         featured: true,
       },
       {
-        title: "排程前甘特圖",
+        title: "排程管理 - 執行前",
         caption: "演算法執行前的排程狀態，用於對比最佳化前後差異。",
         src: surgeryBeforeAlgorithm,
       },
       {
-        title: "排程後甘特圖",
+        title: "排程管理 - 執行後",
         caption: "演算法執行後重新分配結果，凸顯自動排程流程。",
         src: surgeryAfterAlgorithm,
       },
       {
-        title: "排程管理 - 執行前",
-        caption: "排程管理頁面的演算法執行前狀態。",
+        title: "手術管理 - 執行前",
+        caption: "手術管理頁面的演算法執行前狀態。",
         src: surgeryManagementBeforeAlgorithm,
       },
       {
-        title: "排程管理 - 執行後",
-        caption: "排程管理頁面的演算法執行後狀態。",
+        title: "手術管理 - 執行後",
+        caption: "手術管理頁面的演算法執行後狀態。",
         src: surgeryManagementAfterAlgorithm,
       },
       {
@@ -102,7 +121,7 @@ export const projectDetails = [
   },
   {
     id: "rag",
-    eyebrow: "LLM Application",
+    eyebrow: "RAG Knowledge BASE",
     title: "RAG 知識庫問答系統",
     description:
       "展示文件上傳、知識庫檢索與聊天回答流程，重點放在 RAG 應用的完整互動。",
@@ -127,7 +146,7 @@ export const projectDetails = [
   },
   {
     id: "hollow-knight",
-    eyebrow: "Reinforcement Learning",
+    eyebrow: "HollowKnight AI",
     title: "Hollow Knight AI",
     description:
       "用訓練曲線呈現 PPO Agent 的學習過程，補足強化學習專案的成果證據。",

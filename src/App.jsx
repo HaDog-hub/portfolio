@@ -13,7 +13,7 @@ function Nav() {
   return (
     <header className="site-header">
       <a className="brand" href="#top" aria-label="回到首頁">
-        <span className="brand-mark">KH</span>
+        <span className="brand-mark">HaDog</span>
         <span>Portfolio</span>
       </a>
       <nav className="nav-links" aria-label="主要導覽">
@@ -156,6 +156,9 @@ function ProjectCard({ project, index }) {
         <a className="button primary" href={project.links.github}>
           GitHub Repo
         </a>
+        <a className="button ghost" href={`#${project.id}`}>
+          查看設計重點
+        </a>
         {project.links.demo ? (
           <a className="button ghost" href={project.links.demo}>
             Live Demo
@@ -181,34 +184,27 @@ function Projects() {
 }
 
 function CaseStudy() {
-  const notes = [
-    "把演算法輸出接回實際排程操作流程，而不是只停留在離線實驗。",
-    "用可視化甘特圖呈現排程結果，讓非技術使用者能直接檢查與調整。",
-    "保留手動排程、固定房間與管理資料等實務需求，讓系統更接近真實場景。",
-  ];
-
   return (
     <section id="case-study" className="section case-section">
-      <div className="section-heading">
-        <p className="eyebrow">Case Study Preview</p>
-        <h2>主打作品會用「問題、解法、工程取捨」來說明。</h2>
-      </div>
-      <div className="case-grid">
-        {notes.map((note, index) => (
-          <div className="case-note" key={note}>
-            <span>0{index + 1}</span>
-            <p>{note}</p>
-          </div>
-        ))}
-      </div>
       <div className="detail-stack">
         {projectDetails.map((project) => (
-          <article className="detail-section" key={project.id}>
+          <article className="detail-section" id={project.id} key={project.id}>
             <div className="detail-heading">
               <p className="eyebrow">{project.eyebrow}</p>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
             </div>
+            {project.highlights ? (
+              <div className="case-grid">
+                {project.highlights.map((highlight, index) => (
+                  <div className="case-note" key={highlight.title}>
+                    <span>0{index + 1}</span>
+                    <strong>{highlight.title}</strong>
+                    <p>{highlight.description}</p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
             <div className="screenshot-grid">
               {project.images.map((image) => (
                 <ImageFrame
