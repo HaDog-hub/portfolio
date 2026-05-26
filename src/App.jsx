@@ -307,6 +307,27 @@ function Contact() {
 
 export default function App() {
   const [activeImage, setActiveImage] = useState(null);
+  const [showWorkReturn, setShowWorkReturn] = useState(false);
+
+  useEffect(() => {
+    const updateWorkReturn = () => {
+      const projectsSection = document.getElementById("projects");
+
+      if (!projectsSection) return;
+
+      const sectionBottom = projectsSection.getBoundingClientRect().bottom;
+      setShowWorkReturn(sectionBottom <= 88);
+    };
+
+    updateWorkReturn();
+    window.addEventListener("scroll", updateWorkReturn, { passive: true });
+    window.addEventListener("resize", updateWorkReturn);
+
+    return () => {
+      window.removeEventListener("scroll", updateWorkReturn);
+      window.removeEventListener("resize", updateWorkReturn);
+    };
+  }, []);
 
   return (
     <div id="top" className="app">
@@ -347,6 +368,13 @@ export default function App() {
         <CaseStudy onOpenImage={setActiveImage} />
         <Contact />
       </main>
+      <a
+        className={showWorkReturn ? "work-return is-visible" : "work-return"}
+        href="#projects"
+        aria-label="回到 Selected Work"
+      >
+        <span>回到作品</span>
+      </a>
       <ImageLightbox image={activeImage} onClose={() => setActiveImage(null)} />
     </div>
   );
