@@ -245,7 +245,6 @@ main {
 
 .featured-card,
 .project-card,
-.skill-card,
 .case-note,
 .contact-section {
   border: 1px solid var(--line);
@@ -279,8 +278,7 @@ main {
 }
 
 .featured-copy h2,
-.project-card h3,
-.skill-card h3 {
+.project-card h3 {
   margin: 0;
 }
 
@@ -449,6 +447,21 @@ main {
   font-size: 0.95rem;
 }
 
+.image-frame figcaption b,
+.image-frame figcaption em {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.image-frame figcaption b {
+  color: var(--text);
+}
+
+.image-frame figcaption em {
+  color: var(--accent-2);
+  font-size: 0.78rem;
+}
+
 .image-frame figcaption span {
   color: var(--muted);
   font-size: 0.88rem;
@@ -601,8 +614,7 @@ main {
   text-align: right;
 }
 
-.project-card h3,
-.skill-card h3 {
+.project-card h3 {
   font-size: 1.35rem;
 }
 
@@ -661,8 +673,7 @@ main {
   flex: 1 1 0;
 }
 
-.case-grid,
-.skill-grid {
+.case-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
@@ -702,6 +713,73 @@ main {
   margin-top: 20px;
 }
 
+.subheading {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.award-section {
+  margin-top: 24px;
+}
+
+.award-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.award-grid .image-frame {
+  background: var(--surface);
+}
+
+.award-grid .image-frame figcaption b {
+  white-space: pre-line;
+}
+
+.award-grid .window-bar {
+  display: none;
+}
+
+.award-grid .image-frame img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.award-grid .image-frame img[alt="全國技專校院學生實務專題製作競賽"] {
+  object-fit: contain;
+  background: #f5f7fb;
+}
+
+.award-grid .image-frame figcaption {
+  min-height: 116px;
+  padding: 12px;
+}
+
+.award-grid .image-frame figcaption strong {
+  display: none;
+}
+
+.award-grid .image-frame figcaption b {
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.award-grid .image-frame figcaption span,
+.award-grid .image-frame figcaption em {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.award-grid .image-frame figcaption span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
 .screenshot-grid .image-frame:not(.compact) {
   grid-column: 1 / -1;
 }
@@ -728,30 +806,11 @@ main {
   line-height: 1.75;
 }
 
-.skill-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.skill-card {
-  padding: 22px;
-}
-
-.skill-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.skill-list span {
-  color: var(--muted);
-  font-size: 0.94rem;
-}
-
 .contact-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(420px, 1fr);
+  align-items: start;
+  gap: 32px;
   margin: 20px 0 64px;
   padding: 32px;
 }
@@ -759,6 +818,36 @@ main {
 .contact-section p {
   max-width: 680px;
   margin: 16px 0 0;
+}
+
+.contact-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.contact-item {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--surface-2);
+  margin: 10px;
+}
+
+.contact-item span {
+  color: var(--subtle);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.contact-item strong {
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: 0.95rem;
 }
 
 .lightbox {
@@ -833,6 +922,10 @@ main {
     min-height: auto;
   }
 
+  .contact-section {
+    grid-template-columns: 1fr;
+  }
+
   .featured-copy h2 {
     white-space: normal;
   }
@@ -843,7 +936,7 @@ main {
     grid-template-columns: 1fr;
   }
 
-  .skill-grid {
+  .award-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -907,12 +1000,15 @@ main {
     display: none;
   }
 
-  .skill-grid {
+  .contact-section {
+    align-items: flex-start;
+  }
+
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 
-  .contact-section {
-    align-items: flex-start;
-    flex-direction: column;
+  .award-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -3,7 +3,6 @@ import {
   featuredProject,
   projectDetails,
   secondaryProjects,
-  skillGroups,
 } from "./data/projects";
 
 function Badge({ children }) {
@@ -19,14 +18,13 @@ function Nav() {
       </a>
       <nav className="nav-links" aria-label="主要導覽">
         <a href="#projects">作品</a>
-        <a href="#skills">能力</a>
         <a href="#contact">聯絡</a>
       </nav>
     </header>
   );
 }
 
-function ImageFrame({ image, compact = false, onOpen }) {
+function ImageFrame({ image, compact = false, onOpen, titleOverride }) {
   return (
     <figure className={compact ? "image-frame compact" : "image-frame"}>
       <button
@@ -43,10 +41,12 @@ function ImageFrame({ image, compact = false, onOpen }) {
         <img src={image.src} alt={image.title} loading="lazy" />
         <span className="image-overlay">點擊查看大圖</span>
       </button>
-      {image.caption ? (
+      {image.caption || titleOverride || image.status ? (
         <figcaption>
           <strong>{image.title}</strong>
-          <span>{image.caption}</span>
+          {titleOverride ? <b>{titleOverride}</b> : null}
+          {image.caption ? <span>{image.caption}</span> : null}
+          {image.status ? <em>{image.status}</em> : null}
         </figcaption>
       ) : null}
     </figure>
@@ -237,7 +237,30 @@ function CaseStudy({ onOpenImage }) {
                 ))}
               </div>
             ) : null}
+            {project.awards ? (
+              <div className="award-section">
+                <p className="subheading">作品榮譽</p>
+                <div className="award-grid">
+                  {project.awards.map((award) => (
+                    <ImageFrame
+                      image={{
+                        src: award.src,
+                        title: award.title,
+                        caption: award.note,
+                        status: award.status,
+                        fit: award.fit,
+                      }}
+                      key={award.title}
+                      titleOverride={award.label}
+                      compact
+                      onOpen={onOpenImage}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : null}
             <div className="screenshot-grid">
+              <p className="subheading">作品展示</p>
               {project.images.map((image) => (
                 <ImageFrame
                   image={image}
@@ -254,42 +277,30 @@ function CaseStudy({ onOpenImage }) {
   );
 }
 
-function Skills() {
-  return (
-    <section id="skills" className="section">
-      <div className="section-heading">
-        <p className="eyebrow">Technical Range</p>
-        <h2>技能區先用能力分類呈現，避免變成一串沒有脈絡的工具列表。</h2>
-      </div>
-      <div className="skill-grid">
-        {skillGroups.map((group) => (
-          <article className="skill-card" key={group.title}>
-            <h3>{group.title}</h3>
-            <div className="skill-list">
-              {group.items.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function Contact() {
+  const contactItems = [
+    ["Email", "yongjun0423@gmail.com"],
+    ["Phone", "+886 975 677 638"],
+    ["GitHub", "github.com/HaDog-hub"],
+  ];
+
   return (
     <section id="contact" className="contact-section">
       <div>
-        <p className="eyebrow">Next Step</p>
-        <h2>正在整理成求職用作品集。</h2>
+        <p className="eyebrow">Contact</p>
+        <h2>聯絡我</h2>
         <p>
-          目前是視覺初版。後續可替換真實截圖、補上專案成果、履歷連結與聯絡資訊。
+          如果你想進一步了解我的專案、履歷或面試安排，可以透過以下資訊與我聯繫。
         </p>
       </div>
-      <a className="button primary" href="https://github.com/HaDog-hub">
-        GitHub Profile
-      </a>
+      <div className="contact-grid">
+        {contactItems.map(([label, value]) => (
+          <div className="contact-item" key={label}>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
@@ -334,7 +345,6 @@ export default function App() {
         </section>
         <Projects onOpenImage={setActiveImage} />
         <CaseStudy onOpenImage={setActiveImage} />
-        <Skills />
         <Contact />
       </main>
       <ImageLightbox image={activeImage} onClose={() => setActiveImage(null)} />

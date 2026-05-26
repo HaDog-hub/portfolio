@@ -10,6 +10,11 @@ import surgeryDepartmentManagement from "../assets/screenshots/surgery/departmen
 import surgeryHomePage from "../assets/screenshots/surgery/home-page.png";
 import surgeryManagementAfterAlgorithm from "../assets/screenshots/surgery/surgery-management-after-algorithm.png";
 import surgeryManagementBeforeAlgorithm from "../assets/screenshots/surgery/surgery-management-before-algorithm.png";
+import awardCollegeProject from "../assets/screenshots/surgery/awards/college-project.JPG";
+import awardDepartmentProject from "../assets/screenshots/surgery/awards/department-project.JPG";
+import awardInformationApplication from "../assets/screenshots/surgery/awards/information-application.png";
+import awardLandseedHealthcare from "../assets/screenshots/surgery/awards/landseed-healthcare.png";
+import awardNationalPracticalProject from "../assets/screenshots/surgery/awards/national-practical-project.jpg";
 
 export const featuredProject = {
   eyebrow: "Featured Case Study",
@@ -73,6 +78,40 @@ export const projectDetails = [
         title: "實務管理流程",
         description:
           "保留帳號、科別、手術房與手術資料管理，讓系統不只是演算法 demo。",
+      },
+    ],
+    awards: [
+      {
+        title: "全國技專校院學生實務專題製作競賽",
+        label: "2026 全國實務專題競賽",
+        note: "資工通訊群 第一名",
+        status: "獎狀尚未製作完成",
+        fit: "contain",
+        src: awardNationalPracticalProject,
+      },
+      {
+        title: "大專校院資訊應用服務創新競賽 聯新國際智慧健康照護組",
+        label: "2025\n大專校院資訊應用服務創新競賽",
+        note: "聯新國際智慧健康照護組 第一名",
+        src: awardLandseedHealthcare,
+      },
+      {
+        title: "大專校院資訊應用服務創新競賽 資訊應用組六",
+        label: "2025\n大專校院資訊應用服務創新競賽",
+        note: "資訊應用組六 第一名",
+        src: awardInformationApplication,
+      },
+      {
+        title: "高雄科技大學 電機與資訊學院 院專題",
+        label: "\n2025 高科大電資學院院專題",
+        note: "特優",
+        src: awardCollegeProject,
+      },
+      {
+        title: "高雄科技大學 電通系 系專題展",
+        label: "\n2025 高科大電通系系專題展",
+        note: "系專題展 第二名",
+        src: awardDepartmentProject,
       },
     ],
     images: [
@@ -159,19 +198,4 @@ export const projectDetails = [
       },
     ],
   },
-];
-
-export const skillGroups = [
-  {
-    title: "Frontend",
-    items: ["React", "Vite", "SPA", "Responsive UI", "Data-heavy UI"],
-  },
-  {
-    title: "Backend",
-    items: ["Spring Boot", "FastAPI", "REST API", "JWT", "SQL / ORM"],
-  },
-  {
-    title: "AI Engineering",
-    items: ["RAG", "Embeddings", "Hybrid Retrieval", "LLM Streaming"],
-  }
 ];
