@@ -324,6 +324,46 @@ main {
   background: #101419;
 }
 
+.image-frame {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #101419;
+}
+
+.image-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.image-frame figcaption {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.image-frame figcaption strong {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.image-frame figcaption span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.image-frame.compact figcaption {
+  padding: 12px 14px 14px;
+}
+
 .window-bar {
   display: flex;
   align-items: center;
@@ -521,6 +561,43 @@ main {
   gap: 18px;
 }
 
+.detail-stack {
+  display: grid;
+  gap: 34px;
+  margin-top: 34px;
+}
+
+.detail-section {
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.detail-heading {
+  max-width: 760px;
+  margin-bottom: 20px;
+}
+
+.detail-heading h3 {
+  margin: 0;
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+}
+
+.detail-heading p:not(.eyebrow) {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.screenshot-grid .image-frame:not(.compact) {
+  grid-column: 1 / -1;
+}
+
 .case-note {
   padding: 22px;
 }
@@ -580,7 +657,8 @@ main {
   }
 
   .project-grid,
-  .case-grid {
+  .case-grid,
+  .screenshot-grid {
     grid-template-columns: 1fr;
   }
 
@@ -590,6 +668,10 @@ main {
 
   .system-preview {
     min-height: 320px;
+  }
+
+  .screenshot-grid .image-frame:not(.compact) {
+    grid-column: auto;
   }
 }
 

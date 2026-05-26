@@ -1,4 +1,9 @@
-import { featuredProject, secondaryProjects, skillGroups } from "./data/projects";
+import {
+  featuredProject,
+  projectDetails,
+  secondaryProjects,
+  skillGroups,
+} from "./data/projects";
 
 function Badge({ children }) {
   return <span className="badge">{children}</span>;
@@ -43,6 +48,25 @@ function HeroPanel() {
         ))}
       </div>
     </aside>
+  );
+}
+
+function ImageFrame({ image, compact = false }) {
+  return (
+    <figure className={compact ? "image-frame compact" : "image-frame"}>
+      <div className="window-bar" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
+      <img src={image.src} alt={image.title} loading="lazy" />
+      {image.caption ? (
+        <figcaption>
+          <strong>{image.title}</strong>
+          <span>{image.caption}</span>
+        </figcaption>
+      ) : null}
+    </figure>
   );
 }
 
@@ -107,7 +131,7 @@ function FeaturedCard() {
           </a>
         </div>
       </div>
-      <SystemPreview />
+      <ImageFrame image={{ src: featuredProject.cover, title: "首頁甘特圖" }} />
     </article>
   );
 }
@@ -122,7 +146,7 @@ function ProjectCard({ project, index }) {
       <h3>{project.title}</h3>
       <p>{project.summary}</p>
       <div className="mini-preview">
-        <SystemPreview compact />
+        <ImageFrame image={{ src: project.cover, title: project.title }} compact />
       </div>
       <div className="tag-row">
         {project.tags.map((tag) => (
@@ -173,6 +197,26 @@ function CaseStudy() {
             <span>0{index + 1}</span>
             <p>{note}</p>
           </div>
+        ))}
+      </div>
+      <div className="detail-stack">
+        {projectDetails.map((project) => (
+          <article className="detail-section" key={project.id}>
+            <div className="detail-heading">
+              <p className="eyebrow">{project.eyebrow}</p>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+            </div>
+            <div className="screenshot-grid">
+              {project.images.map((image) => (
+                <ImageFrame
+                  image={image}
+                  key={image.title}
+                  compact={!image.featured}
+                />
+              ))}
+            </div>
+          </article>
         ))}
       </div>
     </section>
