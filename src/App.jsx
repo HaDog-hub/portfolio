@@ -145,7 +145,7 @@ function FeaturedCard({ onOpenImage }) {
           <a className="button primary" href={featuredProject.links.github}>
             GitHub Repo
           </a>
-          <a className="button ghost" href="#case-study">
+          <a className="button ghost" href="#surgery">
             查看設計重點
           </a>
         </div>
@@ -314,7 +314,7 @@ export default function App() {
       <main>
         <section className="hero">
           <div className="hero-copy">
-            <p className="hero-role">AI Application / Full-stack Systems / Optimization</p>
+            <p className="hero-role">AI Application / Full-stack Systems / Reinforcement Learning</p>
             <h1>
               把演算法、RAG 與強化學習
               <span>做成可操作的工程系統。</span>
