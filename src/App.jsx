@@ -18,7 +18,7 @@ function Nav() {
       </a>
       <nav className="nav-links" aria-label="主要導覽">
         <a href="#projects">作品</a>
-        <a href="#contact">聯絡</a>
+        <a href="#contact">聯絡我</a>
       </nav>
     </header>
   );
@@ -314,7 +314,6 @@ export default function App() {
       <main>
         <section className="hero">
           <div className="hero-copy">
-            <p className="hero-name">HaDog</p>
             <p className="hero-role">AI Application / Full-stack Systems / Optimization</p>
             <h1>
               把演算法、RAG 與強化學習
@@ -326,6 +325,7 @@ export default function App() {
                 具備 React 前端、FastAPI / Spring Boot 後端與演算法實作經驗。
               </span>
             </p>
+            <p className="hero-name">林永濬 Julian</p>
             <div className="hero-tags" aria-label="核心技術">
               {["React", "Spring Boot", "FastAPI", "RAG", "PPO"].map(
                 (tag) => (

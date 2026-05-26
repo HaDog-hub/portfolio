@@ -65,19 +65,24 @@ export const projectDetails = [
       "主打完整系統能力：從手術資料管理、權限角色，到拖曳式甘特圖與排程演算法整合。",
     highlights: [
       {
-        title: "演算法整合",
+        title: "Situation",
         description:
-          "將 SA + SGDR 排程結果接回後端流程，輸出可被前端檢視與操作的排程資料。",
+          "醫院手術排程需要同時考量手術房、科別、醫師與時間限制，人工調整耗時且難比較最佳化效果。",
       },
       {
-        title: "視覺化排程",
+        title: "Task",
         description:
-          "用甘特圖呈現手術房、時間與手術項目，讓使用者能比較排程前後差異。",
+          "建立一套可管理手術資料、視覺化排程，並能接入自動排程演算法的決策支援系統。",
       },
       {
-        title: "實務管理流程",
+        title: "Action",
         description:
-          "保留帳號、科別、手術房與手術資料管理，讓系統不只是演算法 demo。",
+          "整合 React 甘特圖介面、Spring Boot API 與 SA + SGDR 排程流程，並設計排程前後對比。",
+      },
+      {
+        title: "Result",
+        description:
+          "完成可操作的手術排程系統，涵蓋管理、排程與最佳化流程，並獲得多項專題競賽獎項。",
       },
     ],
     awards: [
