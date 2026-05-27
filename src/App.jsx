@@ -299,7 +299,6 @@ function CaseStudy({ onOpenImage }) {
             <div className="detail-heading">
               <p className="eyebrow">{project.eyebrow}</p>
               <h3>{project.title}</h3>
-              <h4>(個人作品)</h4>
               <p>{project.description}</p>
               <p>{project.role}</p>
             </div>
