@@ -22,9 +22,9 @@ export const featuredProject = {
   summary:
     "整合拖曳式甘特圖、角色權限與 Simulated Annealing 排程演算法的醫療排程管理系統。",
   description:
-    "以醫院手術室排程為情境，將資料管理、手動調整與自動最佳化流程整合在同一個操作介面中。",
+    "以醫院手術室排程為情境，串接 React 介面、Spring Boot API、MySQL 資料模型與外部排程演算法，讓使用者能從資料維護、拖曳調整到排程確認完成完整 workflow。",
   tags: ["React", "Vite", "Spring Boot", "MySQL", "SA + SGDR"],
-  points: ["拖曳式甘特圖排程", "演算法前後對比", "角色權限與管理介面"],
+  points: ["拖曳式甘特圖排程", "REST API 與 JPA 資料模型", "CSV 演算法串接與快照流程"],
   cover: surgeryHomePage,
   links: {
     github: "https://github.com/HaDog-hub/Surgery-Scheduling-System",
@@ -47,8 +47,8 @@ export const secondaryProjects = [
     id: "hollow-knight",
     title: "Hollow Knight AI",
     summary:
-      "以 PPO 訓練純視覺 Boss 戰 Agent，透過 C# Mod 與 Python RL 環境串接。",
-    tags: ["PPO", "PyTorch", "Gymnasium", "C# Mod", "TCP"],
+      "以 PPO 訓練 Hollow Knight Boss 戰 AI，串接 C# Mod、Python Gym 環境與視覺觀測。",
+    tags: ["PPO", "Stable-Baselines3", "Gymnasium", "C# Mod", "TCP"],
     cover: hollowKnightTrainingCurve,
     links: {
       github: "https://github.com/HaDog-hub/PPO-HollowKnight",
@@ -62,7 +62,7 @@ export const projectDetails = [
     eyebrow: "Surgery Scheduling System",
     title: "智能手術排程決策支援系統 (團隊專案)",
     description:
-      "主打完整系統能力：從手術資料管理、權限角色，到拖曳式甘特圖與排程演算法整合。",
+      "手術排程管理系統，提供手術、醫師、科別、手術房與帳號管理，並以甘特圖呈現排程結果。負責前端介面、後端 REST API、MySQL/JPA 資料模型與系統整合，包含 CSV 匯出、演算法批次執行、排程結果回寫、拖曳調整、手術群組與首頁快照展示。",
     role: "負責角色：全端開發與系統整合",
     highlights: [
       {
@@ -73,17 +73,17 @@ export const projectDetails = [
       {
         title: "Task",
         description:
-          "建立一套可管理手術資料、視覺化排程，並能接入自動排程演算法的決策支援系統。",
+          "建立一套可管理手術、醫師、科別、手術房與帳號資料，並能接入自動排程演算法的決策支援系統。",
       },
       {
         title: "Action",
         description:
-          "整合 React 甘特圖介面、Spring Boot API 與 SA + SGDR 排程流程，並設計排程前後對比。",
+          "整合 React 甘特圖介面、Spring Boot REST API、JPA 資料模型與 SA + SGDR 排程流程，將 DB 資料轉為 CSV 執行演算法，再解析結果回寫並呈現於排程畫面。",
       },
       {
         title: "Result",
         description:
-          "完成可操作的手術排程系統，涵蓋管理、排程與最佳化流程，並獲得多項專題競賽獎項。",
+          "完成可操作的手術排程系統，支援拖曳調整、跨房移動、手術群組與排程快照展示，並獲得多項專題競賽獎項。",
       },
     ],
     awards: [
@@ -169,7 +169,7 @@ export const projectDetails = [
     eyebrow: "RAG Knowledge Base",
     title: "RAG 知識庫問答系統 (個人作品)",
     description:
-      "展示文件上傳、知識庫檢索與聊天回答流程，重點放在 RAG 應用的完整互動。",
+      "展示文件上傳、知識庫檢索與聊天回答流程，重點放在 RAG 應用的完整互動。系統會先檢索相關文件段落，再由後端動態組裝 prompt，要求模型依據 context 回答、資料不足時明確說明，並針對摘要與對話標題設計專用 prompt，讓回答更可靠且符合知識庫問答情境。",
     images: [
       {
         title: "聊天室主頁面",
@@ -194,11 +194,11 @@ export const projectDetails = [
     eyebrow: "PPO Hollow Knight",
     title: "Hollow Knight AI (個人作品)",
     description:
-      "用訓練曲線呈現 PPO Agent 的學習過程，補足強化學習專案的成果證據。",
+      "以 Stable-Baselines3 PPO 訓練 AI 操控 Hollow Knight 挑戰 Hornet Boss。系統以 C# Mod 透過 TCP JSON 傳遞玩家與 Boss 狀態，Python 端建立 Gymnasium 環境、執行鍵盤動作、擷取灰階影格並結合 Cutie 物件遮罩作為觀測。訓練過程設計 reward shaping、自動重置與 checkpoint resume，累積約 146 萬 steps，紀錄中曾擊敗 Boss，1000 筆 boss damage 平均約 55%。",
     images: [
       {
         title: "訓練曲線圖",
-        caption: "追蹤訓練過程與 reward / damage 表現，用於說明模型學習進展。",
+        caption: "追蹤訓練過程與 reward / boss damage 表現，用於說明實驗迭代與模型學習進展。",
         src: hollowKnightTrainingCurve,
         featured: true,
       },
