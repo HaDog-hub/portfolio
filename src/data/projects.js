@@ -27,7 +27,7 @@ export const featuredProject = {
   points: ["拖曳式甘特圖排程", "演算法前後對比", "角色權限與管理介面"],
   cover: surgeryHomePage,
   links: {
-    github: "https://github.com/1535414904/Surgery-Scheduling-System",
+    github: "https://github.com/HaDog-hub/Surgery-Scheduling-System",
   },
 };
 
