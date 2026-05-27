@@ -60,9 +60,10 @@ export const projectDetails = [
   {
     id: "surgery",
     eyebrow: "Surgery Scheduling System",
-    title: "智能手術排程決策支援系統",
+    title: "智能手術排程決策支援系統 (團隊專案)",
     description:
       "主打完整系統能力：從手術資料管理、權限角色，到拖曳式甘特圖與排程演算法整合。",
+    role: "負責角色：全端開發與系統整合",
     highlights: [
       {
         title: "Situation",
@@ -166,7 +167,7 @@ export const projectDetails = [
   {
     id: "rag",
     eyebrow: "RAG Knowledge Base",
-    title: "RAG 知識庫問答系統",
+    title: "RAG 知識庫問答系統 (個人作品)",
     description:
       "展示文件上傳、知識庫檢索與聊天回答流程，重點放在 RAG 應用的完整互動。",
     images: [
@@ -191,7 +192,7 @@ export const projectDetails = [
   {
     id: "hollow-knight",
     eyebrow: "PPO Hollow Knight",
-    title: "Hollow Knight AI",
+    title: "Hollow Knight AI (個人作品)",
     description:
       "用訓練曲線呈現 PPO Agent 的學習過程，補足強化學習專案的成果證據。",
     images: [

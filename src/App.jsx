@@ -79,12 +79,17 @@ function Nav({ isWorkHighlighted }) {
 }
 
 function ImageFrame({ image, compact = false, onOpen, titleOverride }) {
+  const lightboxImage = {
+    ...image,
+    title: titleOverride || image.title,
+  };
+
   return (
     <figure className={compact ? "image-frame compact" : "image-frame"}>
       <button
         className="image-trigger"
         type="button"
-        onClick={() => onOpen(image)}
+        onClick={() => onOpen(lightboxImage)}
         aria-label={`查看大圖：${image.title}`}
       >
         <div className="window-bar" aria-hidden="true">
@@ -128,10 +133,12 @@ function ImageLightbox({ image, onClose }) {
 
   if (!image) return null;
 
+  const hasDescription = image.caption || image.status;
+
   return (
     <div className="lightbox" role="dialog" aria-modal="true" aria-label={image.title}>
       <button className="lightbox-backdrop" type="button" onClick={onClose} aria-label="關閉大圖" />
-      <div className="lightbox-panel">
+      <div className={hasDescription ? "lightbox-panel has-description" : "lightbox-panel"}>
         <div className="lightbox-header">
           <strong>{image.title}</strong>
           <button type="button" onClick={onClose}>
@@ -139,6 +146,12 @@ function ImageLightbox({ image, onClose }) {
           </button>
         </div>
         <img src={image.src} alt={image.title} />
+        {hasDescription ? (
+          <div className="lightbox-description">
+            {image.caption ? <p>{image.caption}</p> : null}
+            {image.status ? <span>{image.status}</span> : null}
+          </div>
+        ) : null}
       </div>
     </div>
   );
@@ -205,7 +218,11 @@ function FeaturedCard({ onOpenImage }) {
         </div>
       </div>
       <ImageFrame
-        image={{ src: featuredProject.cover, title: "首頁甘特圖" }}
+        image={{
+          src: featuredProject.cover,
+          title: "首頁甘特圖",
+          caption: featuredProject.summary,
+        }}
         onOpen={onOpenImage}
       />
     </article>
@@ -223,7 +240,11 @@ function ProjectCard({ project, index, onOpenImage }) {
       <p>{project.summary}</p>
       <div className="mini-preview">
         <ImageFrame
-          image={{ src: project.cover, title: project.title }}
+          image={{
+            src: project.cover,
+            title: project.title,
+            caption: project.summary,
+          }}
           compact
           onOpen={onOpenImage}
         />
@@ -278,7 +299,9 @@ function CaseStudy({ onOpenImage }) {
             <div className="detail-heading">
               <p className="eyebrow">{project.eyebrow}</p>
               <h3>{project.title}</h3>
+              <h4>(個人作品)</h4>
               <p>{project.description}</p>
+              <p>{project.role}</p>
             </div>
             {project.highlights ? (
               <div className="case-grid">

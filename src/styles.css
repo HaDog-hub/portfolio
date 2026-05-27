@@ -1020,10 +1020,37 @@ main {
 
 .lightbox-panel img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
   max-height: calc(min(88vh, 900px) - 63px);
   object-fit: contain;
   background: #0b0e12;
+}
+
+.lightbox-panel.has-description img {
+  max-height: calc(min(88vh, 900px) - 150px);
+}
+
+.lightbox-description {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.lightbox-description p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.lightbox-description span {
+  color: var(--accent-2);
+  font-size: 0.84rem;
+  font-weight: 800;
 }
 
 @media (max-width: 920px) {
