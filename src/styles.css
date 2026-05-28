@@ -358,9 +358,61 @@ main {
 .project-card,
 .case-note,
 .contact-section {
+  position: relative;
+  z-index: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(21, 26, 33, 0.94);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.featured-card::after,
+.project-card::after,
+.case-note::after,
+.contact-section::after,
+.contact-item::after,
+.image-frame::after {
+  position: absolute;
+  right: 18px;
+  bottom: -14px;
+  left: 18px;
+  z-index: -1;
+  height: 34px;
+  border-radius: 999px;
+  background: #071014;
+  content: "";
+  filter: blur(16px);
+  opacity: 0;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  transform: scaleX(0.84);
+  pointer-events: none;
+}
+
+.featured-card:hover,
+.project-card:hover,
+.contact-item:hover,
+.detail-section .image-frame:hover {
+  border-color: rgba(229, 231, 235, 0.8);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 0 0 1px rgba(125, 211, 252, 0.18),
+    0 0 34px rgba(125, 211, 252, 0.28),
+    0 0 68px rgba(125, 211, 252, 0.16),
+    0 26px 36px -18px rgba(7, 16, 20, 0.95);
+  transform: translateY(-4px) scale(1.015);
+}
+
+.featured-card:hover::after,
+.project-card:hover::after,
+.contact-item:hover::after,
+.detail-section .image-frame:hover::after {
+  opacity: 1;
+  transform: scaleX(1.08);
 }
 
 .section {
@@ -463,12 +515,18 @@ main {
 }
 
 .image-frame {
+  position: relative;
+  z-index: 0;
   min-width: 0;
   margin: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
   background: #101419;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .image-trigger {
@@ -519,8 +577,14 @@ main {
 
 .image-overlay {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 18px;
+  bottom: 6px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  max-width: calc(100% - 36px);
   padding: 7px 10px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -528,6 +592,10 @@ main {
   color: var(--text);
   font-size: 0.78rem;
   font-weight: 700;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   opacity: 0;
   transform: translateY(4px);
   transition:
@@ -539,6 +607,10 @@ main {
 .image-trigger:focus-visible .image-overlay {
   opacity: 1;
   transform: translateY(0);
+}
+
+.featured-card > .image-frame .image-overlay {
+  bottom: 42px;
 }
 
 .image-trigger:focus-visible {
@@ -940,6 +1012,8 @@ main {
 }
 
 .contact-item {
+  position: relative;
+  z-index: 0;
   display: grid;
   gap: 6px;
   min-width: 0;
@@ -948,6 +1022,10 @@ main {
   border-radius: 8px;
   background: var(--surface-2);
   margin: 10px;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .contact-item span {
