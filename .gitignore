@@ -6,3 +6,14 @@ dist
 Surgery-Scheduling-System/
 RAG_Knowledge_BASE/
 HollowKnight_AI/
+
+# Personal application documents
+履歷_林永濬.pdf
+自傳_林永濬.docx
+
+# Local browser test artifacts
+.chrome-profile*/
+example.png
+portfolio_live*.png
+portfolio_projects.png
+resume_page*.png
